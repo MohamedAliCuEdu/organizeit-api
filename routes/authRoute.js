@@ -62,7 +62,7 @@ router.post(
     res.header("authentication", accessToken);
     res.cookie("jwt", newRefreshToken, {
       httpOnly: true,
-      maxAge: EXPIRES_LIST.jwtCookie,
+      maxAge: EXPIRES_LIST.jwtCookie, secure: true,
     });
     // 7. send accessToken:
     res.json({
@@ -79,7 +79,11 @@ router.get(
     let refreshToken = req.cookies?.jwt;
     if (!refreshToken) return res.sendStatus(204);
     // 2. clear jwt cookie:
-    res.clearCookie("jwt", { httpOnly: true, maxAge: EXPIRES_LIST.jwtCookie });
+    res.clearCookie("jwt", {
+      httpOnly: true,
+      maxAge: EXPIRES_LIST.jwtCookie,
+      secure: true,
+    });
     // 3. find user:
     let foundUser = await User.findOne({ refreshToken }).exec();
     if (!foundUser) return res.status(204).json({ errMsg: "user not found!" });
@@ -104,6 +108,7 @@ router.get(
     res.clearCookie("jwt", {
       maxAge: EXPIRES_LIST.jwtCookie,
       httpOnly: true,
+      secure: true,
     });
     // 3. find user by token:
     let foundUser = await User.findOne({ refreshToken }).exec();
@@ -155,6 +160,7 @@ router.get(
         res.cookie("jwt", newRefreshToken, {
           httpOnly: true,
           maxAge: EXPIRES_LIST.jwtCookie,
+          secure: true,
         });
         // 9. send accessToken:
         res.json({
