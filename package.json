@@ -1,5 +1,5 @@
 {
-  "name": "server",
+  "name": "organizeit-api",
   "version": "1.0.0",
   "description": "task manager server, built by node.js & express & mongoDB",
   "main": "server.js",
