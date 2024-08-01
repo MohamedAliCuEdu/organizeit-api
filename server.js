@@ -63,7 +63,6 @@ app.use("/*", (req, res) => {
 });
 
 // ________________connect to database & run the server:
-conCompassDB(process.env.DATABASE_URI);
 mongoose.connection.once("open", () => {
   app.listen(process.env.PORT || 4000, () => {
     console.log("task-manager server: running...");
