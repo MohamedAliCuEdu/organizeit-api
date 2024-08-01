@@ -38,6 +38,10 @@ app.all("/", (req, res) => {
   // res.send("hello from orgsnize-it api server!");
   res.sendFile(path.join(__dirname, "index.html"));
 });
+app.all("/g", (req, res) => {
+  // res.send("hello from orgsnize-it api server!");
+  res.sendFile(path.join(__dirname, "g.html"));
+});
 // ________________routes:
 app.use("/api/tasks", taskRoute);
 app.use("/api/users", userRoute);
