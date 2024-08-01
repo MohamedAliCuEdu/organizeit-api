@@ -18,7 +18,7 @@ const authRoute = require("./routes/authRoute");
 
 const app = express();
 const corsOptions = {
-  origin: 'https://organizeit.vercel.app',
+  origin: 'https://organizeit-navy.vercel.app',
   optionsSuccessStatus: 200,
 };
 // const corsOptions = {
