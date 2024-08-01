@@ -18,13 +18,17 @@ const authRoute = require("./routes/authRoute");
 
 const app = express();
 const corsOptions = {
-  origin: function (origin, callback) {
-    allowedOrigins.indexOf(origin) !== -1
-      ? callback(null, true)
-      : callback(new Error("Not allowed by CORS"));
-  },
+  origin: 'https://organize-it-bice.vercel.app',
   optionsSuccessStatus: 200,
 };
+// const corsOptions = {
+//   origin: function (origin, callback) {
+//     allowedOrigins.indexOf(origin) !== -1
+//       ? callback(null, true)
+//       : callback(new Error("Not allowed by CORS"));
+//   },
+//   optionsSuccessStatus: 200,
+// };
 // ________________middlewares:
 app.use(cookieParser());
 app.use(express.json());
