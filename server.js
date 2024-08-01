@@ -4,6 +4,7 @@ const { default: helmet } = require("helmet");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
 require("dotenv").config();
+const path = require("path")
 
 const allowedOrigins = require("./config/allowedOrigins");
 const credentialsMW = require("./middlewares/credentialsMW");
@@ -34,7 +35,8 @@ app.use(cors());
 // app.use(cors(corsOptions));
 // ________________ main route:
 app.all("/", (req, res) => {
-  res.send("hello from orgsnize-it api server!");
+  // res.send("hello from orgsnize-it api server!");
+  res.sendFile(path.join(__dirname, "index.html"));
 });
 // ________________routes:
 app.use("/api/tasks", taskRoute);
