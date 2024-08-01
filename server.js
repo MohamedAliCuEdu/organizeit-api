@@ -29,11 +29,12 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(helmet());
-app.use(credentialsMW);
-app.use(cors(corsOptions));
+app.use(cors());
+// app.use(credentialsMW);
+// app.use(cors(corsOptions));
 // ________________ main route:
 app.all("/", (req, res) => {
-  res.send("hello from orgsnize-it server!");
+  res.send("hello from orgsnize-it api server!");
 });
 // ________________routes:
 app.use("/api/tasks", taskRoute);

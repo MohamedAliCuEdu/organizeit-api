@@ -10,7 +10,7 @@ const noteSchema = new Schema({
   },
   content: {
     type: String,
-    maxlength: 2000,
+    maxlength: 1000,
     require: true,
   },
   tags: {

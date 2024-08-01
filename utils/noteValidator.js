@@ -13,13 +13,13 @@ const noteSchmea = {
     content: {
       type: "string",
       minLength: 1,
-      maxLength: 5000,
+      maxLength: 1000,
     },
     tags: {
       type: "array",
       items: { type: "string", minLength: 3, maxLength: 15 },
       uniqueItems: true,
-      maxLength: 5,
+      maxItems: 5,
       default: [],
     },
     created_at: {

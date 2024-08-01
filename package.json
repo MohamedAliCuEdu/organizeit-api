@@ -4,7 +4,9 @@
   "description": "task manager server, built by node.js & express & mongoDB",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server",
+    "dev": "nodemon server"
   },
   "keywords": [],
   "author": "MO_Ali",
