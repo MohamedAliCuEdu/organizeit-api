@@ -30,9 +30,8 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(helmet());
-app.use(cors());
-// app.use(credentialsMW);
-// app.use(cors(corsOptions));
+app.use(credentialsMW);
+app.use(cors(corsOptions));
 // ________________ main route:
 app.all("/", (req, res) => {
   // res.send("hello from orgsnize-it api server!");
@@ -56,7 +55,7 @@ app.use((err, req, res, nxt) => {
 // ________________unknown routes:
 app.use("/*", (req, res) => {
   console.log("not found")
-  res.status(404).send("not found!");
+  res.status(403).send("not found!");
 });
 
 // ________________connect to database & run the server:
