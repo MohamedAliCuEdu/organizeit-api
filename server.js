@@ -17,10 +17,6 @@ const archiveRoute = require("./routes/archiveRoute");
 const authRoute = require("./routes/authRoute");
 
 const app = express();
-const corsOptions = {
-  origin: 'https://organizeit-navy.vercel.app',
-  optionsSuccessStatus: 200,
-};
 // const corsOptions = {
 //   origin: function (origin, callback) {
 //     allowedOrigins.indexOf(origin) !== -1
@@ -29,6 +25,11 @@ const corsOptions = {
 //   },
 //   optionsSuccessStatus: 200,
 // };
+const corsOptions = {
+  origin: 'https://organizeit-navy.vercel.app', // Allow this origin
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Specify the methods you want to allow
+  allowedHeaders: ['Content-Type', 'Authorization'] // Specify the headers you want to allow
+};
 // ________________middlewares:
 app.use(cookieParser());
 app.use(express.json());
@@ -63,6 +64,7 @@ app.use("/*", (req, res) => {
 });
 
 // ________________connect to database & run the server:
+conCompassDB(process.env.DATABASE_URI)
 mongoose.connection.once("open", () => {
   app.listen(process.env.PORT || 4000, () => {
     console.log("task-manager server: running...");
