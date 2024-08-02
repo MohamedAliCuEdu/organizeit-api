@@ -25,12 +25,7 @@ const app = express();
 //   },
 //   optionsSuccessStatus: 200,
 // };
-const corsOptions = {
-  origin: 'https://organizeit-ld911dt78-mohamedalicuedus-projects.vercel.app', // Allow this origin
-  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Specify the methods you want to allow
-  allowedHeaders: ['Content-Type', 'Authorization'], // Specify the headers you want to allow
-  credentials: true // Allow credentials
-};
+allowedHeaders: ['Content-Type', 'Authorization', 'Authentication'], // Allow the Authentication header
 // ________________middlewares:
 app.use(cookieParser());
 app.use(express.json());
