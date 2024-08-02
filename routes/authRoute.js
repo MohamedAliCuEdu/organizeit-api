@@ -52,6 +52,8 @@ router.post(
       res.clearCookie("jwt", {
         httpOnly: true,
         maxAge: EXPIRES_LIST.jwtCookie,
+        sameSite: "None",
+        secure: true,
       });
     }
     // 5. update lastLoginDate:
@@ -62,7 +64,9 @@ router.post(
     res.header("authentication", accessToken);
     res.cookie("jwt", newRefreshToken, {
       httpOnly: true,
-      maxAge: EXPIRES_LIST.jwtCookie, secure: true,
+      maxAge: EXPIRES_LIST.jwtCookie,
+      sameSite: "None",
+      secure: true,
     });
     // 7. send accessToken:
     res.json({
@@ -82,6 +86,7 @@ router.get(
     res.clearCookie("jwt", {
       httpOnly: true,
       maxAge: EXPIRES_LIST.jwtCookie,
+      sameSite: "None",
       secure: true,
     });
     // 3. find user:
@@ -107,6 +112,7 @@ router.get(
     // 2. clear old token from cookies:
     res.clearCookie("jwt", {
       maxAge: EXPIRES_LIST.jwtCookie,
+      sameSite: "None",
       httpOnly: true,
       secure: true,
     });
@@ -160,6 +166,7 @@ router.get(
         res.cookie("jwt", newRefreshToken, {
           httpOnly: true,
           maxAge: EXPIRES_LIST.jwtCookie,
+          sameSite: "None",
           secure: true,
         });
         // 9. send accessToken:
