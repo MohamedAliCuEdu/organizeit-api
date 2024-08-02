@@ -6,8 +6,8 @@ const cors = require("cors");
 require("dotenv").config();
 const path = require("path")
 
-const allowedOrigins = require("./config/allowedOrigins");
-const credentialsMW = require("./middlewares/credentialsMW");
+// const allowedOrigins = require("./config/allowedOrigins");
+// const credentialsMW = require("./middlewares/credentialsMW");
 
 const { conCompassDB } = require("./config/connectDB");
 const taskRoute = require("./routes/taskRoute");
@@ -28,14 +28,15 @@ const app = express();
 const corsOptions = {
   origin: 'https://organizeit-ld911dt78-mohamedalicuedus-projects.vercel.app', // Allow this origin
   methods: ['GET', 'POST', 'PUT', 'DELETE'], // Specify the methods you want to allow
-  allowedHeaders: ['Content-Type', 'Authorization'] // Specify the headers you want to allow
+  allowedHeaders: ['Content-Type', 'Authorization'], // Specify the headers you want to allow
+  credentials: true // Allow credentials
 };
 // ________________middlewares:
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(helmet());
-app.use(credentialsMW);
+// app.use(credentialsMW);
 app.use(cors(corsOptions));
 // ________________ main route:
 app.all("/", (req, res) => {
