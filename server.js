@@ -17,27 +17,27 @@ const archiveRoute = require("./routes/archiveRoute");
 const authRoute = require("./routes/authRoute");
 
 const app = express();
-// const corsOptions = {
-//   origin: function (origin, callback) {
-//     allowedOrigins.indexOf(origin) !== -1
-//       ? callback(null, true)
-//       : callback(new Error("Not allowed by CORS"));
-//   },
-//   optionsSuccessStatus: 200,
-// };
 const corsOptions = {
-  origin: 'https://organizeit-navy.vercel.app', // Allow this origin
-  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Specify the methods you want to allow
-  allowedHeaders: ['Content-Type', 'Authorization', 'Authentication'], // Allow the Authentication header
-  credentials: true // Allow credentials
-
+  origin: function (origin, callback) {
+    allowedOrigins.indexOf(origin) !== -1
+      ? callback(null, true)
+      : callback(new Error("Not allowed by CORS"));
+  },
+  optionsSuccessStatus: 200,
 };
+// const corsOptions = {
+//   origin: 'https://organizeit-navy.vercel.app', // Allow this origin
+//   methods: ['GET', 'POST', 'PUT', 'DELETE'], // Specify the methods you want to allow
+//   allowedHeaders: ['Content-Type', 'Authorization', 'Authentication'], // Allow the Authentication header
+//   credentials: true // Allow credentials
+
+// };
 // ________________middlewares:
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(helmet());
-// app.use(credentialsMW);
+app.use(credentialsMW);
 app.use(cors(corsOptions));
 // ________________ main route:
 app.all("/", (req, res) => {
